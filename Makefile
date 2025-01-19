@@ -83,7 +83,7 @@ ASFLAGS = $(CFLAGS)
 
 $K/kernel: $(OBJS) $K/kernel.ld $U/initcode
 	$(LD) $(LDFLAGS) -T $K/kernel.ld -o $K/kernel $(OBJS) 
-	$(OBJDUMP) -S $K/kernel > $K/kernel.asm
+	$(OBJDUMP) -S $K/kernel --source-comment='src: ' > $K/kernel.asm
 	$(OBJDUMP) -t $K/kernel | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$$/d' > $K/kernel.sym
 
 $U/initcode: $U/initcode.S
